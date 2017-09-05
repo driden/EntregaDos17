@@ -25,6 +25,9 @@
     <Filter Include="Implementacion\Tads\Tabla\Hash cerrado">
       <UniqueIdentifier>{cbe26b60-f282-4c91-b50b-6c27dd27732d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Implementacion\Tads\AVL">
+      <UniqueIdentifier>{0918b82e-8e65-47e0-82cd-a90c54ba91cf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CasoDePrueba.cpp">
@@ -39,6 +42,12 @@
     <ClCompile Include="SistemaTemplates.cpp">
       <Filter>Implementacion</Filter>
     </ClCompile>
+    <ClCompile Include="AVLImp.cpp">
+      <Filter>Implementacion\Tads\AVL</Filter>
+    </ClCompile>
+    <ClCompile Include="NodoAVL.cpp">
+      <Filter>Implementacion\Tads\AVL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CasoDePrueba.h">
@@ -52,6 +61,15 @@
     </ClInclude>
     <ClInclude Include="Tabla.h">
       <Filter>Implementacion\Tads\Tabla</Filter>
+    </ClInclude>
+    <ClInclude Include="AVL.h">
+      <Filter>Implementacion\Tads\AVL</Filter>
+    </ClInclude>
+    <ClInclude Include="AVLImp.h">
+      <Filter>Implementacion\Tads\AVL</Filter>
+    </ClInclude>
+    <ClInclude Include="NodoAVL.h">
+      <Filter>Implementacion\Tads\AVL</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

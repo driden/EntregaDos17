@@ -96,14 +96,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AVLImp.cpp" />
     <ClCompile Include="CasoDePrueba.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NodoAVL.cpp" />
     <ClCompile Include="Sistema.cpp" />
     <ClCompile Include="SistemaTemplates.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AVL.h" />
+    <ClInclude Include="AVLImp.h" />
     <ClInclude Include="CasoDePrueba.h" />
     <ClInclude Include="NodoArbol.h" />
+    <ClInclude Include="NodoAVL.h" />
     <ClInclude Include="Sistema.h" />
     <ClInclude Include="Tabla.h" />
   </ItemGroup>
