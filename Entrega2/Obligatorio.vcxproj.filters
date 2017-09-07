@@ -25,8 +25,8 @@
     <Filter Include="Implementacion\Tads\Tabla\Hash cerrado">
       <UniqueIdentifier>{cbe26b60-f282-4c91-b50b-6c27dd27732d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Implementacion\Tads\AVL">
-      <UniqueIdentifier>{0918b82e-8e65-47e0-82cd-a90c54ba91cf}</UniqueIdentifier>
+    <Filter Include="Implementacion\Tads\ListaOrdenada">
+      <UniqueIdentifier>{90f16339-5089-41b3-9b12-5141967f1c89}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -42,11 +42,14 @@
     <ClCompile Include="SistemaTemplates.cpp">
       <Filter>Implementacion</Filter>
     </ClCompile>
-    <ClCompile Include="AVLImp.cpp">
-      <Filter>Implementacion\Tads\AVL</Filter>
+    <ClCompile Include="ListaEncadenadaImp.cpp">
+      <Filter>Implementacion\Tads\ListaOrdenada</Filter>
     </ClCompile>
-    <ClCompile Include="NodoAVL.cpp">
-      <Filter>Implementacion\Tads\AVL</Filter>
+    <ClCompile Include="ListaEncadenadaIteracion.cpp">
+      <Filter>Implementacion\Tads\ListaOrdenada</Filter>
+    </ClCompile>
+    <ClCompile Include="HashAbiertoImpl.cpp">
+      <Filter>Implementacion\Tads\Tabla\Hash abierto</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -62,14 +65,17 @@
     <ClInclude Include="Tabla.h">
       <Filter>Implementacion\Tads\Tabla</Filter>
     </ClInclude>
-    <ClInclude Include="AVL.h">
-      <Filter>Implementacion\Tads\AVL</Filter>
+    <ClInclude Include="ListaEncadenadaImp.h">
+      <Filter>Implementacion\Tads\ListaOrdenada</Filter>
     </ClInclude>
-    <ClInclude Include="AVLImp.h">
-      <Filter>Implementacion\Tads\AVL</Filter>
+    <ClInclude Include="ListaEncadenadaIteracion.h">
+      <Filter>Implementacion\Tads\ListaOrdenada</Filter>
     </ClInclude>
-    <ClInclude Include="NodoAVL.h">
-      <Filter>Implementacion\Tads\AVL</Filter>
+    <ClInclude Include="ListaOrd.h">
+      <Filter>Implementacion\Tads\ListaOrdenada</Filter>
+    </ClInclude>
+    <ClInclude Include="HashAbiertoImpl.h">
+      <Filter>Implementacion\Tads\Tabla\Hash abierto</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

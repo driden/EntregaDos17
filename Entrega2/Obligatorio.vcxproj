@@ -96,19 +96,21 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AVLImp.cpp" />
     <ClCompile Include="CasoDePrueba.cpp" />
+    <ClCompile Include="HashAbiertoImpl.cpp" />
+    <ClCompile Include="ListaEncadenadaImp.cpp" />
+    <ClCompile Include="ListaEncadenadaIteracion.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="NodoAVL.cpp" />
     <ClCompile Include="Sistema.cpp" />
     <ClCompile Include="SistemaTemplates.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AVL.h" />
-    <ClInclude Include="AVLImp.h" />
     <ClInclude Include="CasoDePrueba.h" />
+    <ClInclude Include="HashAbiertoImpl.h" />
+    <ClInclude Include="ListaEncadenadaImp.h" />
+    <ClInclude Include="ListaEncadenadaIteracion.h" />
+    <ClInclude Include="ListaOrd.h" />
     <ClInclude Include="NodoArbol.h" />
-    <ClInclude Include="NodoAVL.h" />
     <ClInclude Include="Sistema.h" />
     <ClInclude Include="Tabla.h" />
   </ItemGroup>
