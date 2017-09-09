@@ -5,6 +5,8 @@
 template <class T>
 class Iteracion abstract
 {
+private:
+	const int proxima_cubeta() const;
 public:
 	virtual ~Iteracion(){}
 
@@ -15,3 +17,9 @@ public:
 
 	virtual Puntero<Iteracion<T>> Clonar() const { return nullptr; }
 };
+
+template <class T>
+const int Iteracion<T>::proxima_cubeta() const
+{
+
+}
