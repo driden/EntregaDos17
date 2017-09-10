@@ -99,6 +99,8 @@
     <ClCompile Include="CasoDePrueba.cpp" />
     <ClCompile Include="ComparacionTuplaKV.cpp" />
     <ClCompile Include="HashAbiertoImpl.cpp" />
+    <ClCompile Include="HashCerradoImpl.cpp" />
+    <ClCompile Include="HashCerradoIteracion.cpp" />
     <ClCompile Include="ListaEncadenadaImp.cpp" />
     <ClCompile Include="ListaEncadenadaIteracion.cpp" />
     <ClCompile Include="main.cpp" />
@@ -110,6 +112,8 @@
     <ClInclude Include="CasoDePrueba.h" />
     <ClInclude Include="ComparacionTuplaKV.h" />
     <ClInclude Include="HashAbiertoImpl.h" />
+    <ClInclude Include="HashCerradoImpl.h" />
+    <ClInclude Include="HashCerradoIteracion.h" />
     <ClInclude Include="ListaEncadenadaImp.h" />
     <ClInclude Include="ListaEncadenadaIteracion.h" />
     <ClInclude Include="ListaOrd.h" />

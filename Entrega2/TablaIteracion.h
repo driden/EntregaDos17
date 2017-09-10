@@ -11,7 +11,7 @@ private:
 
 	Puntero<ListaOrd<nat>> cubetas;
 	Iterador<nat> iteradorCubeta;
-	int proxima_cubeta() const;
+	
 public:
 
 	~TablaIteracion(){}
@@ -25,12 +25,5 @@ public:
 	Puntero<Iteracion<Tupla<K, V>>> Clonar() const { return nullptr; }
 	
 };
-
-template <class K, class V>
-int TablaIteracion<K, V>::proxima_cubeta() const
-{
-	return - 1;
-
-}
 
 #include "TablaIteracion.cpp"

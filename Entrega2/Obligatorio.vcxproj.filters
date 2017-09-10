@@ -54,8 +54,14 @@
     <ClCompile Include="ComparacionTuplaKV.cpp">
       <Filter>Implementacion\Tads\ListaOrdenada</Filter>
     </ClCompile>
+    <ClCompile Include="HashCerradoImpl.cpp">
+      <Filter>Implementacion\Tads\Tabla\Hash cerrado</Filter>
+    </ClCompile>
     <ClCompile Include="TablaIteracion.cpp">
-      <Filter>Implementacion\Tads\Tabla</Filter>
+      <Filter>Implementacion\Tads\Tabla\Hash abierto</Filter>
+    </ClCompile>
+    <ClCompile Include="HashCerradoIteracion.cpp">
+      <Filter>Implementacion\Tads\Tabla\Hash cerrado</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -87,8 +93,14 @@
     <ClInclude Include="ComparacionTuplaKV.h">
       <Filter>Implementacion\Tads\ListaOrdenada</Filter>
     </ClInclude>
+    <ClInclude Include="HashCerradoImpl.h">
+      <Filter>Implementacion\Tads\Tabla\Hash cerrado</Filter>
+    </ClInclude>
     <ClInclude Include="TablaIteracion.h">
-      <Filter>Implementacion\Tads\Tabla</Filter>
+      <Filter>Implementacion\Tads\Tabla\Hash abierto</Filter>
+    </ClInclude>
+    <ClInclude Include="HashCerradoIteracion.h">
+      <Filter>Implementacion\Tads\Tabla\Hash cerrado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
