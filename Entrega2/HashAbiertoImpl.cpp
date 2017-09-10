@@ -1,3 +1,4 @@
+#include "TablaIteracion.h"
 #ifndef HASH_ABIERTO_IMPL_CPP_
 #define HASH_ABIERTO_IMPL_CPP_
 
@@ -89,7 +90,7 @@ void HashAbiertoImpl<K, V>::BorrarTodos()
 {
 	for (nat i = 0; i < table.Largo; i++)
 	{
-		table[i] == nullptr;
+		table[i] = nullptr;
 		cubetasOcupadas = 0;
 		largo = 0;
 	}
@@ -154,7 +155,35 @@ Puntero<Tabla<K, V>> HashAbiertoImpl<K, V>::Clonar() const
 template <class K, class V>
 Iterador<Tupla<K, V>> HashAbiertoImpl<K, V>::ObtenerIterador() const
 {
-	return nullptr;
+	return new TablaIteracion<K,V>(*this);
+}
+
+template <class K, class V>
+const Tupla<K, V>& HashAbiertoImpl<K, V>::Get(const Tupla<nat, nat> posicion) const
+{
+	assert(CanGet(posicion));
+
+	return table[posicion.Dato1]->Obtener(posicion.Dato2);
+}
+
+template <class K, class V>
+bool HashAbiertoImpl<K, V>::CanGet(const Tupla<nat, nat> posicion) const
+{
+	return table[posicion.Dato1] && (table[posicion.Dato1])->Largo() > posicion.Dato2;
+}
+
+template <class K, class V>
+Puntero<ListaOrd<nat>> HashAbiertoImpl<K, V>::CubetasOcupadas() const
+{
+	Puntero<ListaOrd<nat>> ocupadas = new ListaEncadenadaImp<nat>(Comparador<nat>::Default);
+
+	for (nat i = 0; i < table.Largo;i++)
+	{
+		if (table[i])
+			ocupadas->InsertarOrdenado(i);
+	}
+
+	return ocupadas;
 }
 
 

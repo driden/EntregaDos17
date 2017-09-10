@@ -66,6 +66,16 @@ public:
 	// PRE: -
 	// POS: Devuelve un iterador de las tuplas de la tabla
 	Iterador<Tupla<K, V>> ObtenerIterador() const override;
+
+	// PRE: La tabla esta definida en (x,y)
+	// POS: retorna una copia de la clave y el valor en (x,y)
+	const Tupla<K, V>& Get(const Tupla<nat,nat> posicion) const;
+
+	// PRE: -
+	// POS: - retorna true si hay una tupla en la coordenada dada
+	bool CanGet(const Tupla<nat, nat> posicion) const;
+
+	Puntero<ListaOrd<nat>> CubetasOcupadas() const;
 };
 
 #include "HashAbiertoImpl.cpp"

@@ -6,10 +6,11 @@ template <class K, class V>
 class TablaIteracion : public Iteracion<Tupla<K,V>>
 {
 private:
-	nat posicion;
-	Puntero<Tabla<K, V>> tabla;
-	const HashAbiertoImpl<K, V> hashAbierto;
+	Tupla<nat, nat> posicion;
+	const HashAbiertoImpl<K, V> &hashAbierto;
 
+	Puntero<ListaOrd<nat>> cubetas;
+	Iterador<nat> iteradorCubeta;
 	int proxima_cubeta() const;
 public:
 
@@ -20,6 +21,7 @@ public:
 	void Avanzar() override;
 	void Reiniciar() override;
 
+	
 	Puntero<Iteracion<Tupla<K, V>>> Clonar() const { return nullptr; }
 	
 };
@@ -27,12 +29,7 @@ public:
 template <class K, class V>
 int TablaIteracion<K, V>::proxima_cubeta() const
 {
-	int prox = this->posicion +1;
-
-	while (hashAbierto.table[prox]!=nullptr)
-	{
-		prox++;
-	}
+	return - 1;
 
 }
 
