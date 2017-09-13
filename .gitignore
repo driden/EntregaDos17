@@ -60,6 +60,5 @@ _ReSharper*/
 packages/
 
 *.db
-*.txt
-*.db
+
 /Entrega2/Obligatorio.VC.VC.opendb
