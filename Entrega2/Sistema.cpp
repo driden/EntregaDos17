@@ -2,6 +2,7 @@
 #ifndef SISTEMA_CPP
 #define SISTEMA_CPP
 #include "Sistema.h"
+#include "CadenaHash.h"
 
 template <class T>
 void MergeSort(Array<T> &arr, int low, int high, Comparador<T> comp)
@@ -59,10 +60,31 @@ Cadena OrdenarCadena(Cadena c)
 	return Cadena(palabra.c_str());
 }
 
+bool TieneCaracteresEspeciales(const Cadena &cadena)
+{
+	int min = 97; // a
+	int max = 122; // z
+
+	bool hasSpecialChars = false;
+
+	for (nat x = 0; x < cadena.Largo; x++)
+	{
+		int asciiValue = (int)cadena[x];
+
+		if (asciiValue < min || asciiValue > max)
+		{
+			hasSpecialChars = true;
+			break;
+		}
+	}
+
+	return hasSpecialChars;
+}
+
 Sistema::Sistema(const Cadena& nombreArchivoDiccionario)
 {	
 	// Inicialización de estructuras necesrias para resolver el problema.
-	hash = new HashAbiertoImpl<Cadena, Cadena>(new CadenaFuncionHash(), 85000, Comparador<Cadena>::Default);
+	hash = new HashAbiertoImpl<Cadena, Cadena>(new CadenaHash(), 85000, Comparador<Cadena>::Default);
 	
 	// Vueltas para manejar que el input sea una Cadena
 	string nombre ="";
@@ -80,6 +102,8 @@ Sistema::Sistema(const Cadena& nombreArchivoDiccionario)
 			std::transform(line.begin(), line.end(), line.begin(), ::tolower);
 
 			Cadena original(line.c_str());
+			if (TieneCaracteresEspeciales(original))
+				continue;
 			Cadena ordenada = OrdenarCadena(original);
 
 
@@ -91,12 +115,6 @@ Sistema::Sistema(const Cadena& nombreArchivoDiccionario)
 	}
 }
 
-Cadena Sanitizar(Cadena cadena)
-{
-	// á, é, í, ó, ú
-	return "";
-	
-}
 Sistema::~Sistema()
 {
 }

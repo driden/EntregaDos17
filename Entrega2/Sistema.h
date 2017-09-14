@@ -11,7 +11,7 @@
 #include "NodoArbol.h"
 #include "Tabla.h"
 #include "FuncionHash.h"
-#include "CadenaFuncionHash.h"
+
 
 
 class Sistema
