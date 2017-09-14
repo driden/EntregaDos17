@@ -94,7 +94,7 @@ Sistema::Sistema(const Cadena& nombreArchivoDiccionario)
 	//leer el archivo y llenar el hash
 	string line;
 	ifstream miarchivo(nombre);
-	
+	nat i = 0;
 	if (miarchivo.is_open()) {
 
 		while (getline(miarchivo, line)) {
@@ -108,7 +108,7 @@ Sistema::Sistema(const Cadena& nombreArchivoDiccionario)
 
 
 			hash->Agregar(ordenada, original);
-
+			i++;
 		}
 
 		miarchivo.close();

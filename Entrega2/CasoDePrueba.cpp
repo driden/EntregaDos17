@@ -19,9 +19,9 @@ Cadena CasoDePrueba::GetNombre()const
 
 void CasoDePrueba::CorrerPruebaConcreta()
 {
-	PruebaTablas();
+	//PruebaTablas();
 	PruebaAnagramas();
-	PruebaEsAVL();
+	//PruebaEsAVL();
 }
 
 void CasoDePrueba::Verificar(TipoRetorno obtenido, TipoRetorno esperado, Cadena comentario)
