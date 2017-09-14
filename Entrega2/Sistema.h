@@ -1,15 +1,23 @@
 ﻿#ifndef SISTEMA_H
 #define SISTEMA_H
 
+#include <fstream>
+#include <string>
+#include <algorithm>
+
 #include "Cadena.h"
 #include "Puntero.h"
 #include "Tupla.h"
 #include "NodoArbol.h"
 #include "Tabla.h"
 #include "FuncionHash.h"
+#include "CadenaFuncionHash.h"
+
 
 class Sistema
 {
+private:
+	Puntero<Tabla<Cadena, Cadena>> hash;
 public:
 	Sistema(const Cadena& nombreArchivoDiccionario);
 	~Sistema();

@@ -123,6 +123,9 @@
     <ClInclude Include="Tabla.h" />
     <ClInclude Include="TablaIteracion.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="diccionario" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
