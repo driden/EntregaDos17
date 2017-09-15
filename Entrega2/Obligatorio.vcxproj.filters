@@ -28,6 +28,9 @@
     <Filter Include="Implementacion\Tads\ListaOrdenada">
       <UniqueIdentifier>{90f16339-5089-41b3-9b12-5141967f1c89}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Implementacion\Tads\Funcion Hash">
+      <UniqueIdentifier>{de08714a-3a20-45f1-84bc-408de257ca1d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CasoDePrueba.cpp">
@@ -62,6 +65,9 @@
     </ClCompile>
     <ClCompile Include="HashCerradoIteracion.cpp">
       <Filter>Implementacion\Tads\Tabla\Hash cerrado</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Framework\CadenaHash.cpp">
+      <Filter>Implementacion\Tads\Funcion Hash</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +107,9 @@
     </ClInclude>
     <ClInclude Include="HashCerradoIteracion.h">
       <Filter>Implementacion\Tads\Tabla\Hash cerrado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\CadenaHash.h">
+      <Filter>Implementacion\Tads\Funcion Hash</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

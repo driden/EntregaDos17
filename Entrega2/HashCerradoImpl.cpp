@@ -76,6 +76,15 @@ void HashCerradoImpl<K, V>::Agregar(const K& c, const V& v)
 
 	//Linear probing
 
+	float ocupacion = static_cast<float>(contador) / table.Largo;
+
+	if (ocupacion > 0.7) // re-hashing
+	{
+		Array<Tupla<K, V, estado>> nueva(table.Largo*1.7);
+		Array<Tupla<K, V, estado>>::Copiar(table, nueva, 0);
+		table = nueva;
+	}
+
 	const nat pos = buscar_posicion_insertar(c);
 	Tupla<K, V, estado> t(c, v, OCUPADA);
 

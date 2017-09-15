@@ -96,6 +96,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Framework\CadenaHash.cpp" />
     <ClCompile Include="CasoDePrueba.cpp" />
     <ClCompile Include="ComparacionTuplaKV.cpp" />
     <ClCompile Include="HashAbiertoImpl.cpp" />
@@ -109,6 +110,7 @@
     <ClCompile Include="TablaIteracion.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Framework\CadenaHash.h" />
     <ClInclude Include="CasoDePrueba.h" />
     <ClInclude Include="ComparacionTuplaKV.h" />
     <ClInclude Include="HashAbiertoImpl.h" />

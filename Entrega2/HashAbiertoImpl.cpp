@@ -59,8 +59,18 @@ void HashAbiertoImpl<K, V>::Agregar(const K& c, const V& v)
 {
 	nat cubeta = func->CodigoDeHash(c);
 
-	Tupla<K, V> tupla(c, v);
+	float ocupacion = static_cast<float>(cubetasOcupadas) / table.Largo;
 
+	if (ocupacion > 0.7) // re-hashing
+	{	
+		Array<Puntero<ListaOrd<Tupla<K, V>>>> nuevaTable(table.Largo*1.7);
+		Array<Puntero<ListaOrd<Tupla<K, V>>>>::Copiar(table, nuevaTable, 0);
+		table = nuevaTable;
+	}
+
+	Tupla<K, V> tupla(c, v);
+	
+	
 	if (table[cubeta] == nullptr)
 	{
 		table[cubeta] = new ListaEncadenadaImp<Tupla<K, V>>(compTupla);
