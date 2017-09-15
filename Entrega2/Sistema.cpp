@@ -82,19 +82,19 @@ bool TieneCaracteresEspeciales(const Cadena &cadena)
 }
 
 Sistema::Sistema(const Cadena& nombreArchivoDiccionario)
-{	
+{
 	// Inicialización de estructuras necesrias para resolver el problema.
 	hash = new HashAbiertoImpl<Cadena, Cadena>(new CadenaHash(), 85000, Comparador<Cadena>::Default);
-	
+
 	// Vueltas para manejar que el input sea una Cadena
-	string nombre ="";
+	string nombre = "";
 	for (nat i = 0; i < nombreArchivoDiccionario.Largo; i++)
 		nombre += nombreArchivoDiccionario[i];
-	
+
 	//leer el archivo y llenar el hash
 	string line;
 	ifstream miarchivo(nombre);
-	nat i = 0;
+
 	if (miarchivo.is_open()) {
 
 		while (getline(miarchivo, line)) {
@@ -102,13 +102,12 @@ Sistema::Sistema(const Cadena& nombreArchivoDiccionario)
 			std::transform(line.begin(), line.end(), line.begin(), ::tolower);
 
 			Cadena original(line.c_str());
+
 			if (TieneCaracteresEspeciales(original))
 				continue;
 			Cadena ordenada = OrdenarCadena(original);
 
-
 			hash->Agregar(ordenada, original);
-			i++;
 		}
 
 		miarchivo.close();
@@ -130,14 +129,16 @@ Array<Cadena> Sistema::Anagramas(const Cadena& c)
 
 	Puntero<ListaOrd<Cadena>> lista = new ListaEncadenadaImp<Cadena>(comp);
 
-	while (iter.HayElemento())
+	while (iter.HayElemento()) {
 		if (comp.SonIguales(iter.ElementoActual().Dato1, ordenada))
 			lista->InsertarOrdenado(iter.ElementoActual().Dato2);
+		iter.Avanzar();
+	}
 
-	Array<Cadena> anagramas(lista->Largo());
+	this->anagramas = (lista->Largo());
 	for (nat n = 0; n < anagramas.Largo; n++)
 		anagramas[n] = lista->Obtener(n);
-	
+
 	return anagramas;
 }
 #endif

@@ -17,7 +17,7 @@ const nat HashAbiertoImpl<K, V>::siguiente_primo(const nat num)
 	primos[5] = 13;
 	
 	nat start = (num % 2 == 0) ? num +3 : num+2 ;
-	if (start < 1001) start = 1001;
+	if (start < 80001) start = 80001;
 
 	for (nat n = start; n < 700000 ; n+=2)
 	{
@@ -63,7 +63,7 @@ void HashAbiertoImpl<K, V>::Agregar(const K& c, const V& v)
 
 	if (ocupacion > 0.7) // re-hashing
 	{	
-		Array<Puntero<ListaOrd<Tupla<K, V>>>> nuevaTable(table.Largo*1.7);
+		Array<Puntero<ListaOrd<Tupla<K, V>>>> nuevaTable(static_cast<nat>(table.Largo*1.7));
 		Array<Puntero<ListaOrd<Tupla<K, V>>>>::Copiar(table, nuevaTable, 0);
 		table = nuevaTable;
 	}
