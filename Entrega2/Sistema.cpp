@@ -94,7 +94,7 @@ Sistema::Sistema(const Cadena& nombreArchivoDiccionario)
 	//leer el archivo y llenar el hash
 	string line;
 	ifstream miarchivo(nombre);
-
+	Comparador<Cadena> comp = Comparador<Cadena>::Default;
 	if (miarchivo.is_open()) {
 
 		while (getline(miarchivo, line)) {
@@ -107,6 +107,19 @@ Sistema::Sistema(const Cadena& nombreArchivoDiccionario)
 				continue;
 			Cadena ordenada = OrdenarCadena(original);
 
+			if (hash->EstaDefinida(ordenada))
+			{
+				Iterador<Tupla<Cadena, Cadena>> iter = hash->ObtenerIterador();
+
+				while (iter.HayElemento()) {
+					// Pära que no se duplique
+					if (comp.SonIguales(iter.ElementoActual().Dato1, ordenada) && comp.SonIguales(iter.ElementoActual().Dato2, original))
+						continue;
+
+					iter.Avanzar();
+				}
+			}
+
 			hash->Agregar(ordenada, original);
 		}
 
@@ -118,19 +131,40 @@ Sistema::~Sistema()
 {
 }
 
+
+Cadena ToLower(const Cadena &c)
+{
+	const int asciiSuma = 32;
+	int asciiValue;
+
+	string lower = "";
+
+	for (nat i = 0; i < c.Largo; i++)
+	{
+		asciiValue = static_cast<int>(c[i]);
+		if (!(asciiValue < 65 || asciiValue > 90))
+			asciiValue = asciiValue + asciiSuma;
+
+		lower += static_cast<char>(asciiValue);
+	}
+
+	return Cadena(lower.c_str());
+}
+
 // Ejercicio 1: Anagramas
 Array<Cadena> Sistema::Anagramas(const Cadena& c)
 {
-	Cadena ordenada = OrdenarCadena(c);
+	Cadena minuscula = ToLower(c);
+	Cadena ordenada = OrdenarCadena(minuscula);
+	Comparador<Cadena> comp = Comparador<Cadena>::Default;
 
 	Iterador<Tupla<Cadena, Cadena>> iter = hash->ObtenerIterador();
-
-	Comparador<Cadena> comp = Comparador<Cadena>::Default;
 
 	Puntero<ListaOrd<Cadena>> lista = new ListaEncadenadaImp<Cadena>(comp);
 
 	while (iter.HayElemento()) {
 		if (comp.SonIguales(iter.ElementoActual().Dato1, ordenada))
+			//if (!comp.SonIguales(iter.ElementoActual().Dato2, minuscula))
 			lista->InsertarOrdenado(iter.ElementoActual().Dato2);
 		iter.Avanzar();
 	}
@@ -141,4 +175,6 @@ Array<Cadena> Sistema::Anagramas(const Cadena& c)
 
 	return anagramas;
 }
+
+
 #endif

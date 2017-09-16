@@ -10,11 +10,12 @@ private:
 	const HashAbiertoImpl<K, V> &hashAbierto;
 
 	Puntero<ListaOrd<nat>> cubetas;
+	Puntero<ListaOrd<nat>> principio;
 	Iterador<nat> iteradorCubeta;
 	
 public:
 
-	~TablaIteracion(){}
+	~TablaIteracion() { principio = nullptr; }
 	TablaIteracion(const HashAbiertoImpl<K,V> &abierto);
 	bool HayElemento() const override;
 	const Tupla<K, V>& ElementoActual() const override;

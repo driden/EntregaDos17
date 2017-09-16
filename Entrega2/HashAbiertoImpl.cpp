@@ -1,9 +1,9 @@
-#include "TablaIteracion.h"
 #ifndef HASH_ABIERTO_IMPL_CPP_
 #define HASH_ABIERTO_IMPL_CPP_
 
 #include "HashAbiertoImpl.h"
 #include "ComparacionTuplaKV.h"
+#include "TablaIteracion.h"
 
 template <class K, class V>
 const nat HashAbiertoImpl<K, V>::siguiente_primo(const nat num)
@@ -75,10 +75,15 @@ void HashAbiertoImpl<K, V>::Agregar(const K& c, const V& v)
 	{
 		table[cubeta] = new ListaEncadenadaImp<Tupla<K, V>>(compTupla);
 		cubetasOcupadas++;
+		largo++;
+	}else
+	{
+		if (!EstaDefinida(c))
+		{
+			table[cubeta]->InsertarOrdenado(tupla);
+			largo++;
+		}
 	}
-
-	table[cubeta]->InsertarOrdenado(tupla);
-	largo++;
 }
 
 template <class K, class V>
@@ -117,8 +122,7 @@ bool HashAbiertoImpl<K, V>::EstaDefinida(const K& c) const
 {
 	nat cubeta = func->CodigoDeHash(c);
 
-	Tupla<K, V> t(c,V());
-	return table[cubeta]->Pertenece(t);
+	return table[cubeta] != nullptr;
 }
 
 template <class K, class V>
@@ -165,7 +169,36 @@ Puntero<Tabla<K, V>> HashAbiertoImpl<K, V>::Clonar() const
 template <class K, class V>
 Iterador<Tupla<K, V>> HashAbiertoImpl<K, V>::ObtenerIterador() const
 {
-	return new TablaIteracion<K,V>(*this);
+//	return new TablaIteracion<K,V>(*this);
+
+	int aux = 0;
+	Array<Tupla<K, V>> arrayIter = Array<Tupla<K, V>>(this->largo);
+	// Iterador de Array
+	Iterador<Puntero<ListaEncadenadaImp<Tupla<K, V>>>> it = this->table.ObtenerIterador();
+	
+	while (it.HayElemento()) {
+		Puntero<ListaEncadenadaImp<Tupla<K, V>>> lista = it.ElementoActual();
+		
+		// El actual no puede ser nulo
+		if (lista != nullptr) {
+			Iterador<Tupla<K, V>> iterLista = lista->ObtenerIterador();
+			
+			while (iterLista.HayElemento()) {
+				arrayIter[aux] = iterLista.ElementoActual();
+				aux++;
+				iterLista.Avanzar();
+			}
+		}
+		it.Avanzar();
+	}
+	return arrayIter.ObtenerIterador();
+}
+
+template <class K, class V>
+Iterador<Tupla<K, V>> HashAbiertoImpl<K, V>::ObtenerIterador(const K& c)
+{
+	nat cubeta = func->CodigoDeHash(c);
+	return table[cubeta]->ObtenerIterador();
 }
 
 template <class K, class V>

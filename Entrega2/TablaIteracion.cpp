@@ -9,6 +9,7 @@ TablaIteracion<K, V>::TablaIteracion(const HashAbiertoImpl<K, V>& abierto) :
 	hashAbierto(abierto)
 {
 	cubetas = abierto.CubetasOcupadas();
+	principio = cubetas;
 	iteradorCubeta = cubetas->ObtenerIterador();
 	nat cubeta = iteradorCubeta.HayElemento() ? iteradorCubeta.ElementoActual() : 0;
 	posicion = Tupla<nat, nat>(cubeta, 0);

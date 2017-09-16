@@ -56,7 +56,7 @@ public:
 	//POS: Devuelve un clon de la tabla, no comparten memoria
 	virtual Puntero<Tabla<C, V>> Clonar() const abstract;
 
-	virtual Iterador<Tupla<C,V>> ObtenerIterador() const abstract;
+	virtual Iterador<Tupla<C,V>> ObtenerIterador() const abstract;	
 };
 
 #endif

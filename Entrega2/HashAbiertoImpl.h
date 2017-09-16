@@ -66,6 +66,9 @@ public:
 	// PRE: -
 	// POS: Devuelve un iterador de las tuplas de la tabla
 	Iterador<Tupla<K, V>> ObtenerIterador() const override;
+	//
+	// POS: Devuelve un iterador para las coliciones de clave C
+	Iterador<Tupla<K, V>> ObtenerIterador(const K &c);
 
 	// PRE: La tabla esta definida en (x,y)
 	// POS: retorna una copia de la clave y el valor en (x,y)
