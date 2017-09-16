@@ -22,7 +22,8 @@ private:
 	typename Puntero<NodoLista<T>> ListaEncadenadaImp<T>::ClonRecursivo(const Puntero<NodoLista<T>>& aClonar, nat& cantidadElem) const;
 
 public:
-	~ListaEncadenadaImp() { lista = nullptr; }
+	~ListaEncadenadaImp() { //lista = nullptr;
+		}
 
 	// PRE: -
 	// POS: Crea una ListaEncadenadaImp a partir de un comparador, toma el comparador por defecto

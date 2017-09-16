@@ -109,12 +109,14 @@ Sistema::Sistema(const Cadena& nombreArchivoDiccionario)
 
 			if (hash->EstaDefinida(ordenada))
 			{
-				Iterador<Tupla<Cadena, Cadena>> iter = hash->ObtenerIterador();
+				Iterador<Tupla<Cadena, Cadena>> iter = hash->ObtenerIterador(ordenada);
 
 				while (iter.HayElemento()) {
 					// Pära que no se duplique
-					if (comp.SonIguales(iter.ElementoActual().Dato1, ordenada) && comp.SonIguales(iter.ElementoActual().Dato2, original))
+					if (comp.SonIguales(iter.ElementoActual().Dato2, original))
+					{
 						continue;
+					}
 
 					iter.Avanzar();
 				}

@@ -11,13 +11,13 @@
 #include "NodoArbol.h"
 #include "Tabla.h"
 #include "FuncionHash.h"
-
+#include "HashAbiertoImpl.h"
 
 
 class Sistema
 {
 private:
-	Puntero<Tabla<Cadena, Cadena>> hash;
+	Puntero<HashAbiertoImpl<Cadena, Cadena>> hash;
 	Array<Cadena> anagramas;
 public:
 	Sistema(const Cadena& nombreArchivoDiccionario);

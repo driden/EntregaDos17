@@ -15,29 +15,29 @@ const nat HashAbiertoImpl<K, V>::siguiente_primo(const nat num)
 	primos[3] = 7;
 	primos[4] = 11;
 	primos[5] = 13;
-	
-	nat start = (num % 2 == 0) ? num +3 : num+2 ;
+
+	nat start = (num % 2 == 0) ? num + 3 : num + 2;
 	if (start < 80001) start = 80001;
 
-	for (nat n = start; n < 700000 ; n+=2)
+	for (nat n = start; n < 700000; n += 2)
 	{
 		bool esPrimo = true;
 
-		for (nat q = 0 ; q < primos.Largo; q++ )
+		for (nat q = 0; q < primos.Largo; q++)
 		{
 			if ((n % primos[q]) == 0)
 			{
 				esPrimo = false;
 				break;
-			}				
+			}
 		}
 
 		if (esPrimo) return n;
 	}
-	
+
 	// No deberia llegar a este lugar
 	assert(false);
-	return 0;	
+	return 0;
 }
 
 template <class K, class V>
@@ -45,7 +45,7 @@ HashAbiertoImpl<K, V>::HashAbiertoImpl(Puntero<FuncionHash<K>> f, nat cantidadRe
 {
 	func = f;
 	const nat scope = static_cast<int>(cantidadRegistros*1.7);
-	table = Array<Puntero<ListaOrd<Tupla<K, V>>>>(siguiente_primo(scope),nullptr);
+	table = Array<Puntero<ListaOrd<Tupla<K, V>>>>(siguiente_primo(scope), nullptr);
 	comparador = comp;
 
 	this->compTupla = Comparador<Tupla<K, V>>(new ComparacionTuplaKV<K, V>(comp));
@@ -62,28 +62,23 @@ void HashAbiertoImpl<K, V>::Agregar(const K& c, const V& v)
 	float ocupacion = static_cast<float>(cubetasOcupadas) / table.Largo;
 
 	if (ocupacion > 0.7) // re-hashing
-	{	
+	{
 		Array<Puntero<ListaOrd<Tupla<K, V>>>> nuevaTable(static_cast<nat>(table.Largo*1.7));
 		Array<Puntero<ListaOrd<Tupla<K, V>>>>::Copiar(table, nuevaTable, 0);
 		table = nuevaTable;
 	}
 
 	Tupla<K, V> tupla(c, v);
-	
-	
+
+
 	if (table[cubeta] == nullptr)
 	{
 		table[cubeta] = new ListaEncadenadaImp<Tupla<K, V>>(compTupla);
-		cubetasOcupadas++;
-		largo++;
-	}else
-	{
-		if (!EstaDefinida(c))
-		{
-			table[cubeta]->InsertarOrdenado(tupla);
-			largo++;
-		}
+		cubetasOcupadas++;		
 	}
+	
+	table[cubeta]->InsertarOrdenado(tupla);
+	largo++;
 }
 
 template <class K, class V>
@@ -92,7 +87,7 @@ void HashAbiertoImpl<K, V>::Borrar(const K& c)
 	assert(EstaDefinida(c));
 
 	nat cubeta = func->CodigoDeHash(c);
-	Tupla<K, V> aBorrar(c,V());
+	Tupla<K, V> aBorrar(c, V());
 	table[cubeta]->Eliminar(aBorrar);
 
 	largo--;
@@ -131,7 +126,7 @@ const V& HashAbiertoImpl<K, V>::Obtener(const K& c) const
 	assert(EstaDefinida(c));
 
 	nat cubeta = func->CodigoDeHash(c);
-	Tupla<K, V> t(c,V());
+	Tupla<K, V> t(c, V());
 
 	Iterador<Tupla<K, V>> it = table[cubeta]->ObtenerIterador();
 
@@ -169,20 +164,20 @@ Puntero<Tabla<K, V>> HashAbiertoImpl<K, V>::Clonar() const
 template <class K, class V>
 Iterador<Tupla<K, V>> HashAbiertoImpl<K, V>::ObtenerIterador() const
 {
-//	return new TablaIteracion<K,V>(*this);
+	//	return new TablaIteracion<K,V>(*this);
 
 	int aux = 0;
 	Array<Tupla<K, V>> arrayIter = Array<Tupla<K, V>>(this->largo);
 	// Iterador de Array
 	Iterador<Puntero<ListaEncadenadaImp<Tupla<K, V>>>> it = this->table.ObtenerIterador();
-	
+
 	while (it.HayElemento()) {
 		Puntero<ListaEncadenadaImp<Tupla<K, V>>> lista = it.ElementoActual();
-		
+
 		// El actual no puede ser nulo
 		if (lista != nullptr) {
 			Iterador<Tupla<K, V>> iterLista = lista->ObtenerIterador();
-			
+
 			while (iterLista.HayElemento()) {
 				arrayIter[aux] = iterLista.ElementoActual();
 				aux++;
@@ -220,7 +215,7 @@ Puntero<ListaOrd<nat>> HashAbiertoImpl<K, V>::CubetasOcupadas() const
 {
 	Puntero<ListaOrd<nat>> ocupadas = new ListaEncadenadaImp<nat>(Comparador<nat>::Default);
 
-	for (nat i = 0; i < table.Largo;i++)
+	for (nat i = 0; i < table.Largo; i++)
 	{
 		if (table[i])
 			ocupadas->InsertarOrdenado(i);
