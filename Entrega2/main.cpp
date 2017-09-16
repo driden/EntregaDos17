@@ -4,9 +4,8 @@
 #include "Sistema.h"
 
 #include <string>
-#include <iostream>
 #include <cctype>
-#include <algorithm>
+
 
 Puntero<Sistema> Inicializar()
 {

@@ -87,10 +87,10 @@ void HashAbiertoImpl<K, V>::Borrar(const K& c)
 	assert(EstaDefinida(c));
 
 	nat cubeta = func->CodigoDeHash(c);
-	Tupla<K, V> aBorrar(c, V());
-	table[cubeta]->Eliminar(aBorrar);
+	nat largoCubeta = table[cubeta]->Largo();
+	table[cubeta]= nullptr;
 
-	largo--;
+	largo-=largoCubeta;
 
 	if (table[cubeta] == nullptr) cubetasOcupadas--;
 }

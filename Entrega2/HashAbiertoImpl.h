@@ -78,6 +78,8 @@ public:
 	// POS: - retorna true si hay una tupla en la coordenada dada
 	bool CanGet(const Tupla<nat, nat> posicion) const;
 
+	// PRE: -
+	// POS: - Devuelve una lista ordenada con los numeros de las cubetas ocupadas
 	Puntero<ListaOrd<nat>> CubetasOcupadas() const;
 };
 

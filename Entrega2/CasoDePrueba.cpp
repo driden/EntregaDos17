@@ -19,9 +19,9 @@ Cadena CasoDePrueba::GetNombre()const
 
 void CasoDePrueba::CorrerPruebaConcreta()
 {
-	//PruebaTablas();
+	PruebaTablas();
 	PruebaAnagramas();
-	//PruebaEsAVL();
+	PruebaEsAVL();
 }
 
 void CasoDePrueba::Verificar(TipoRetorno obtenido, TipoRetorno esperado, Cadena comentario)
@@ -224,7 +224,7 @@ void CasoDePrueba::PruebaTablas()
 	nat cubetas = 10;
 	PruebaTabla(interfaz->CrearTablaHashAbierto<Cadena, Cadena>(cubetas, new CadenaFuncionHash(), Comparador<Cadena>::Default), "Prueba Tabla Hash Abierto");
 	PruebaTabla(interfaz->CrearTablaHashCerrado<Cadena, Cadena>(cubetas, new CadenaFuncionHash(), Comparador<Cadena>::Default), "Prueba Tabla Hash Cerrado");
-	
+
 	CerrarSeccion();
 }
 
@@ -239,18 +239,18 @@ void CasoDePrueba::PruebaTabla(Puntero<Tabla<Cadena, Cadena>> tabla, Cadena nomb
 
 		Cadena clave1 = "clave1";
 		Cadena valor1 = "value1";
-		
+
 		tabla->Agregar(clave1, valor1);
 		Verificar(tabla->Largo() == 1, true, "El largo de la tabla es 1.");
 		Verificar(tabla->EstaVacia(), false, "La tabla no está vacía.");
 		Verificar(tabla->EstaDefinida(clave1), true, "clave1 está definida en la tabla.");
 		Verificar(tabla->Obtener(clave1), valor1, "El valor asociado a clave1 es value1.");
-		
+
 		tabla->Borrar(clave1);
 		Verificar(tabla->Largo() == 0, true, "El largo de la tabla es 0.");
 		Verificar(tabla->EstaVacia(), true, "La tabla está vacía.");
 		Verificar(tabla->EstaDefinida(clave1), false, "clave1 no está definida en la tabla.");
-		
+
 		nat cant = 8;
 		Array<Tupla<Cadena, Cadena>> elementos = Array<Tupla<Cadena, Cadena>>(cant);
 		elementos[0] = Tupla<Cadena, Cadena>("clave0", "valor0");
@@ -276,7 +276,7 @@ void CasoDePrueba::PruebaTabla(Puntero<Tabla<Cadena, Cadena>> tabla, Cadena nomb
 		}
 
 		VerificarConjuntos(tabla->ObtenerIterador(), elementos.ObtenerIterador(), "Se obtuvo {0} correctamente", "Se esperaba {0}", "No se esperaba {0}");
-		
+
 		elementos = Array<Tupla<Cadena, Cadena>>(0);
 		tabla->BorrarTodos();
 		Verificar(tabla->EstaVacia(), true, "La tabla está vacía.");
@@ -295,7 +295,7 @@ void CasoDePrueba::PruebaAnagramas()
 	Array<Cadena> anagramas;
 	Array<Cadena> obtenidos;
 
-//+ Prueba 1
+	//+ Prueba 1
 	anagramas = Array<Cadena>(2);
 	anagramas[0] = "algoritmo";
 	anagramas[1] = "logaritmo";
@@ -305,33 +305,33 @@ void CasoDePrueba::PruebaAnagramas()
 	IniciarSeccion("Anagramas de algoritmos");
 	VerificarConjuntos(obtenidos.ObtenerIterador(), anagramas.ObtenerIterador(), "Se obtuvo {0} y se esperaba {1}", "Se esperaba {0}", "No se esperaba {0}");
 	CerrarSeccion();
-//- Prueba 1
+	//- Prueba 1
 
 
-//+ Prueba 2
+	//+ Prueba 2
 	anagramas = Array<Cadena>(5);
 	anagramas[0] = "roma";
 	anagramas[1] = "amor";
 	anagramas[2] = "mora";
 	anagramas[3] = "maro";
 	anagramas[4] = "ramo";
-	
+
 	obtenidos = interfaz->Anagramas("Roma");
-	
-	IniciarSeccion("Anagramas de Roma");	
+
+	IniciarSeccion("Anagramas de Roma");
 	VerificarConjuntos(obtenidos.ObtenerIterador(), anagramas.ObtenerIterador(), "Se obtuvo {0} correctamente", "Se esperaba {0}", "No se esperaba {0}");
 	CerrarSeccion();
-//- Prueba 2
+	//- Prueba 2
 
-//+ Prueba 3
+	//+ Prueba 3
 	obtenidos = interfaz->Anagramas("rmoa");
 
 	IniciarSeccion("Anagramas de rmoa");
 	VerificarConjuntos(obtenidos.ObtenerIterador(), anagramas.ObtenerIterador(), "Se obtuvo {0} correctamente", "Se esperaba {0}", "No se esperaba {0}");
 	CerrarSeccion();
-//- Prueba 3
+	//- Prueba 3
 
-//+ Prueba 4: Palabra más anagramas
+	//+ Prueba 4: Palabra más anagramas
 	anagramas = Array<Cadena>(9);
 	anagramas[0] = "trapo";
 	anagramas[1] = "rapto";
@@ -347,9 +347,9 @@ void CasoDePrueba::PruebaAnagramas()
 	IniciarSeccion("Anagramas de trapo");
 	VerificarConjuntos(obtenidos.ObtenerIterador(), anagramas.ObtenerIterador(), "Se obtuvo {0} correctamente", "Se esperaba {0}", "No se esperaba {0}");
 	CerrarSeccion();
-//- Prueba 4
+	//- Prueba 4
 
-//+ Prueba 5
+	//+ Prueba 5
 	anagramas = Array<Cadena>(1);
 	anagramas[0] = "logos";
 	obtenidos = interfaz->Anagramas("logos");
@@ -357,16 +357,16 @@ void CasoDePrueba::PruebaAnagramas()
 	IniciarSeccion("Anagramas de logos");
 	VerificarConjuntos(obtenidos.ObtenerIterador(), anagramas.ObtenerIterador(), "Se obtuvo {0} correctamente", "Se esperaba {0}", "No se esperaba {0}");
 	CerrarSeccion();
-//- Prueba 5
+	//- Prueba 5
 
 	obtenidos = interfaz->Anagramas("loosg");
 
 	IniciarSeccion("Anagramas de loosg");
 	VerificarConjuntos(obtenidos.ObtenerIterador(), anagramas.ObtenerIterador(), "Se obtuvo {0} correctamente", "Se esperaba {0}", "No se esperaba {0}");
 	CerrarSeccion();
-//- Prueba 5
+	//- Prueba 5
 
-//+ Prueba 6
+	//+ Prueba 6
 	anagramas = Array<Cadena>(3);
 	anagramas[0] = "paleto";
 	anagramas[1] = "pelota";
@@ -376,9 +376,9 @@ void CasoDePrueba::PruebaAnagramas()
 	IniciarSeccion("Anagramas de pelota");
 	VerificarConjuntos(obtenidos.ObtenerIterador(), anagramas.ObtenerIterador(), "Se obtuvo {0} correctamente", "Se esperaba {0}", "No se esperaba {0}");
 	CerrarSeccion();
-//- Prueba 6
+	//- Prueba 6
 
-//+ Prueba 7
+	//+ Prueba 7
 	anagramas = Array<Cadena>(5);
 	anagramas[0] = "estor";
 	anagramas[1] = "estro";
@@ -390,9 +390,9 @@ void CasoDePrueba::PruebaAnagramas()
 	IniciarSeccion("Anagramas de resto");
 	VerificarConjuntos(obtenidos.ObtenerIterador(), anagramas.ObtenerIterador(), "Se obtuvo {0} correctamente", "Se esperaba {0}", "No se esperaba {0}");
 	CerrarSeccion();
-//- Prueba 7
+	//- Prueba 7
 
-//+ Prueba 8
+	//+ Prueba 8
 	anagramas = Array<Cadena>(8);
 	anagramas[0] = "arrate";
 	anagramas[1] = "artera";
@@ -407,9 +407,9 @@ void CasoDePrueba::PruebaAnagramas()
 	IniciarSeccion("Anagramas de atraer");
 	VerificarConjuntos(obtenidos.ObtenerIterador(), anagramas.ObtenerIterador(), "Se obtuvo {0} correctamente", "Se esperaba {0}", "No se esperaba {0}");
 	CerrarSeccion();
-//- Prueba 8	
-		
-//+ Prueba 9
+	//- Prueba 8	
+
+	//+ Prueba 9
 	anagramas = Array<Cadena>(7);
 	anagramas[0] = "acerbo";
 	anagramas[1] = "barceo";
@@ -423,9 +423,9 @@ void CasoDePrueba::PruebaAnagramas()
 	IniciarSeccion("Anagramas de acerbo");
 	VerificarConjuntos(obtenidos.ObtenerIterador(), anagramas.ObtenerIterador(), "Se obtuvo {0} correctamente", "Se esperaba {0}", "No se esperaba {0}");
 	CerrarSeccion();
-//- Prueba 9
+	//- Prueba 9
 
-//+ Prueba 10
+	//+ Prueba 10
 	anagramas = Array<Cadena>(1);
 	anagramas[0] = "universidad";
 	obtenidos = interfaz->Anagramas("universidad");
@@ -433,7 +433,7 @@ void CasoDePrueba::PruebaAnagramas()
 	IniciarSeccion("Anagramas de universidad");
 	VerificarConjuntos(obtenidos.ObtenerIterador(), anagramas.ObtenerIterador(), "Se obtuvo {0} correctamente", "Se esperaba {0}", "No se esperaba {0}");
 	CerrarSeccion();
-//- Prueba 10
+	//- Prueba 10
 
 	CerrarSeccion();
 }
@@ -447,7 +447,7 @@ Array<Puntero<NodoArbol<int>>> CasoDePrueba::CrearArbolPrueba(int nroPrueba) con
 	if (nroPrueba == 0)
 	{
 		retorno = Array<Puntero<NodoArbol<int>>>(3);
-	} 
+	}
 	else if (nroPrueba == 1)
 	{
 		retorno = Array<Puntero<NodoArbol<int>>>(7);
@@ -463,7 +463,7 @@ Array<Puntero<NodoArbol<int>>> CasoDePrueba::CrearArbolPrueba(int nroPrueba) con
 		retorno[i]->der = nullptr;
 		retorno[i]->izq = nullptr;
 	}
-	
+
 	retorno[0]->dato = 60;
 	retorno[1]->dato = 84;
 	retorno[2]->dato = 36;
@@ -486,7 +486,7 @@ Array<Puntero<NodoArbol<int>>> CasoDePrueba::CrearArbolPrueba(int nroPrueba) con
 	if (nroPrueba > 1)
 	{
 		retorno[7]->dato = 21;
-		retorno[8]->dato = 30;		
+		retorno[8]->dato = 30;
 		retorno[9]->dato = 27;
 		retorno[10]->dato = 45;
 		retorno[11]->dato = 57;
@@ -516,13 +516,13 @@ void CasoDePrueba::PruebaEsAVL()
 
 	Array<Puntero<NodoArbol<int>>> nodos = CrearArbolPrueba(0);
 	Verificar(interfaz->EsAVL<int>(nodos[0], Comparador<int>::Default), true, textoEsAvl);
-	
+
 	nodos = CrearArbolPrueba(1);
 	Verificar(interfaz->EsAVL<int>(nodos[0], Comparador<int>::Default), true, textoEsAvl);
 
 	nodos = CrearArbolPrueba(2);
 	Verificar(interfaz->EsAVL<int>(nodos[0], Comparador<int>::Default), true, textoEsAvl);
-	
+
 	nodos = CrearArbolPrueba(2);
 	nodos[3]->dato = 58;
 	Verificar(interfaz->EsAVL<int>(nodos[0], Comparador<int>::Default), false, textoNoAvl);
@@ -532,7 +532,7 @@ void CasoDePrueba::PruebaEsAVL()
 	Verificar(interfaz->EsAVL<int>(nodos[0], Comparador<int>::Default), false, textoNoAvl);
 
 	nodos = CrearArbolPrueba(2);
-	nodos[3]->der = nullptr; 
+	nodos[3]->der = nullptr;
 	Verificar(interfaz->EsAVL<int>(nodos[0], Comparador<int>::Default), false, textoNoAvl);
 
 	nodos = CrearArbolPrueba(2);

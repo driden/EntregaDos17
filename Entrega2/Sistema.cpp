@@ -4,6 +4,8 @@
 #include "Sistema.h"
 #include "CadenaHash.h"
 
+// PRE:
+// POS: ordena el array arr de menor a mayor usando el comparador comp
 template <class T>
 void MergeSort(Array<T> &arr, int low, int high, Comparador<T> comp)
 {
@@ -44,6 +46,8 @@ void Merge(Array<T> &arr, int left_low, int left_high, int right_low, int right_
 		arr[left_low++] = temp[i];
 }
 
+// pre: -
+// pos: devuelve una nueva cadena, que tiene los caracteres de c ordenados alfabeticamente
 Cadena OrdenarCadena(Cadena c)
 {
 	Array<char> letras(c.Largo);
@@ -60,6 +64,8 @@ Cadena OrdenarCadena(Cadena c)
 	return Cadena(palabra.c_str());
 }
 
+// pre: -
+// pos: devuelve true sii cadena tiene caracteres especiales
 bool TieneCaracteresEspeciales(const Cadena &cadena)
 {
 	int min = 97; // a
@@ -110,19 +116,22 @@ Sistema::Sistema(const Cadena& nombreArchivoDiccionario)
 			if (hash->EstaDefinida(ordenada))
 			{
 				Iterador<Tupla<Cadena, Cadena>> iter = hash->ObtenerIterador(ordenada);
-
+				bool doble = false;
 				while (iter.HayElemento()) {
 					// Pära que no se duplique
 					if (comp.SonIguales(iter.ElementoActual().Dato2, original))
-					{
-						continue;
+					{						
+						doble = true; 
+						break;												
 					}
 
 					iter.Avanzar();
 				}
-			}
-
-			hash->Agregar(ordenada, original);
+				if (!doble) hash->Agregar(ordenada, original);
+			}else
+			{
+				hash->Agregar(ordenada, original);
+			}			
 		}
 
 		miarchivo.close();
@@ -133,7 +142,8 @@ Sistema::~Sistema()
 {
 }
 
-
+// Pre
+// pos: se devuelve una nueva instancia de Cadena con todos los caracteres de c en lowercase
 Cadena ToLower(const Cadena &c)
 {
 	const int asciiSuma = 32;
