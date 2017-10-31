@@ -66,9 +66,7 @@
     <ClCompile Include="HashCerradoIteracion.cpp">
       <Filter>Implementacion\Tads\Tabla\Hash cerrado</Filter>
     </ClCompile>
-    <ClCompile Include="..\Framework\CadenaHash.cpp">
-      <Filter>Implementacion\Tads\Funcion Hash</Filter>
-    </ClCompile>
+    <ClCompile Include="CadenaHash.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CasoDePrueba.h">
@@ -108,9 +106,7 @@
     <ClInclude Include="HashCerradoIteracion.h">
       <Filter>Implementacion\Tads\Tabla\Hash cerrado</Filter>
     </ClInclude>
-    <ClInclude Include="..\Framework\CadenaHash.h">
-      <Filter>Implementacion\Tads\Funcion Hash</Filter>
-    </ClInclude>
+    <ClInclude Include="CadenaHash.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="diccionario" />
